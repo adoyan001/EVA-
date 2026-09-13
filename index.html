@@ -163,7 +163,7 @@
             z-index: 2;
         }
 
-        /* Поля ввода и селекты */
+        /* Поля вводу і селекти */
         select, input[type="text"], input[type="tel"], textarea {
             width: 100%;
             padding: 14px 16px;
@@ -223,7 +223,7 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
-        /* Палітра */
+        /* Палітра кольорів */
         .color-picker {
             display: flex;
             gap: 12px;
@@ -326,7 +326,7 @@
             box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
         }
 
-        /* Поп-ап */
+        /* Модальне вікно */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -435,7 +435,7 @@
                     <span class="metal-badge-text" id="badgeText">LOGO</span>
                 </div>
             </div>
-            <span style="font-size: 13px; color: #94a3b8;">Інтерактивний предперегляд структури</span>
+            <span style="font-size: 13px; color: #94a3b8;">Інтерактивний предперегляд</span>
         </div>
 
         <!-- 1. Автомобіль -->
@@ -581,7 +581,7 @@
         </div>
 
         <div style="text-align: center; margin: 25px 0 10px; color: #94a3b8; font-size: 13px;">
-            Є питання чи потрібна консультація?<br>
+            Потрібна консультація?<br>
             <a href="tel:+380972588288" style="color: #38bdf8; font-weight: 700; text-decoration: none;">Зв'язатися з нами: +380 (97) 258-82-88</a>
         </div>
 
@@ -596,7 +596,7 @@
         <button class="btn-buy" onclick="openModal()">Замовити</button>
     </div>
 
-    <!-- Поп-ап -->
+    <!-- Модальне вікно -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-card">
             <div class="modal-header">
@@ -649,7 +649,7 @@
             "Mercedes-Benz": ["A-Class", "B-Class", "C-Class (W203/W204/W205/W206)", "CLA", "CLE", "CLS", "E-Class (W211/W212/W213/W214)", "G-Class", "GLA", "GLB", "GLC", "GLE (W166/V167)", "GLS", "S-Class (W220/W221/W222/W223)", "SL", "Sprinter", "Vito"],
             "Mini": ["Clubman", "Cooper", "Countryman", "Paceman"],
             "Mitsubishi": ["ASX", "Eclipse Cross", "Galant", "L200", "Lancer IX", "Lancer X", "Outlander", "Pajero", "Pajero Sport"],
-            "Nissan": ["350Z", "370Z", "Altima", "Juke", "Leaf", "Maximize", "Murano", "Navara", "Note", "Pathfinder", "Patrol", "Qashqai", "Rogue", "Sentra", "Skyline", "Teana", "X-Trail"],
+            "Nissan": ["350Z", "370Z", "Altima", "Juke", "Leaf", "Maxi", "Murano", "Navara", "Note", "Pathfinder", "Patrol", "Qashqai", "Rogue", "Sentra", "Skyline", "Teana", "X-Trail"],
             "Opel": ["Astra F", "Astra G", "Astra H", "Astra J", "Astra K", "Corsa", "Insignia", "Mokka", "Omega", "Vectra B", "Vectra C", "Zafira"],
             "Peugeot": ["206", "207", "208", "301", "307", "308", "407", "508", "2008", "3008", "5008", "Partner", "Rifter"],
             "Porsche": ["718 Boxster", "718 Cayman", "911 (996/997/991/992)", "Cayenne", "Macan", "Panamera", "Taycan"],
@@ -659,6 +659,7 @@
             "Suzuki": ["Grand Vitara", "Jimny", "SX4", "Swift", "Vitara"],
             "Tesla": ["Cybertruck", "Model 3", "Model S", "Model X", "Model Y", "Roadster"],
             "Toyota": ["4Runner", "Avalon", "Avensis", "Camry (XV30/XV40/XV50/XV70/XV80)", "Corolla", "FJ Cruiser", "Highlander", "Hilux", "Land Cruiser 80", "Land Cruiser 100", "Land Cruiser 200", "Land Cruiser 300", "Land Cruiser Prado (120/150/250)", "Prius", "RAV4", "Sequoia", "Sienna", "Tundra", "Yaris"],
+            "VAZ / Lada": ["2101-2107", "2108/2109/21099", "2110-2112", "2113-2115", "Kalina", "Priora", "Granta", "Vesta", "Niva 2121", "Niva Travel"],
             "Volkswagen": ["Amarok", "Arteon", "Caddy", "Golf 4", "Golf 5", "Golf 6", "Golf 7", "Golf 8", "ID.3", "ID.4", "Jetta", "Passat B5", "Passat B6", "Passat B7", "Passat B8", "Polo", "Scirocco", "Sharan", "Tiguan", "Touareg", "Transporter (T4/T5/T6)"],
             "Volvo": ["C30", "S40", "S60", "S80", "S90", "V60", "V90", "XC40", "XC60", "XC90"]
         };
@@ -709,8 +710,8 @@
             { name: "Фіолетова", hex: "#a855f7" }
         ];
 
-        const matPreview = document.getElementById('matPreview');
-        const matTextureRect = document.getElementById('matTextureRect');
+        let matPreview;
+        let matTextureRect;
         
         let currentShape = "Ромб";
         let selectedBaseColor = "Чорний";
@@ -718,13 +719,10 @@
         let calculatedTotalPrice = 2000;
 
         window.addEventListener('DOMContentLoaded', () => {
-            const brandSelect = document.getElementById('carBrand');
-            for (let brand in autoDatabase) {
-                let opt = document.createElement('option');
-                opt.value = brand;
-                opt.textContent = brand;
-                brandSelect.appendChild(opt);
-            }
+            matPreview = document.getElementById('matPreview');
+            matTextureRect = document.getElementById('matTextureRect');
+
+            initCarBrands();
             renderBaseColors();
             renderBorderColors();
             calculatePrice();
@@ -732,15 +730,27 @@
             updateBadgeText();
         });
 
+        function initCarBrands() {
+            const brandSelect = document.getElementById('carBrand');
+            brandSelect.innerHTML = '<option value="">Марка авто...</option>';
+            
+            for (let brand in autoDatabase) {
+                let opt = document.createElement('option');
+                opt.value = brand;
+                opt.textContent = brand;
+                brandSelect.appendChild(opt);
+            }
+        }
+
         function updateModels() {
-            const brandSelect = document.getElementById('carBrand').value;
+            const brandValue = document.getElementById('carBrand').value;
             const modelSelect = document.getElementById('carModel');
             
             modelSelect.innerHTML = '<option value="">Оберіть модель...</option>';
             
-            if (brandSelect && autoDatabase[brandSelect]) {
+            if (brandValue && autoDatabase[brandValue]) {
                 modelSelect.disabled = false;
-                autoDatabase[brandSelect].forEach(model => {
+                autoDatabase[brandValue].forEach(model => {
                     let opt = document.createElement('option');
                     opt.value = model;
                     opt.textContent = model;
@@ -809,14 +819,14 @@
                 opt.onclick = () => {
                     selectedBaseColor = col.name;
                     document.getElementById('baseColorTitle').textContent = `Обрано: ${col.name}`;
-                    matPreview.style.backgroundColor = col.hex;
+                    if(matPreview) matPreview.style.backgroundColor = col.hex;
                     renderBaseColors();
                 };
                 container.appendChild(opt);
             });
 
             const activeColorObj = availableColors.find(c => c.name === selectedBaseColor) || availableColors[0];
-            matPreview.style.backgroundColor = activeColorObj.hex;
+            if(matPreview) matPreview.style.backgroundColor = activeColorObj.hex;
             document.getElementById('baseColorTitle').textContent = `Обрано: ${activeColorObj.name}`;
         }
 
@@ -831,14 +841,14 @@
                 opt.onclick = () => {
                     selectedBorderColor = col.name;
                     document.getElementById('borderColorTitle').textContent = `Обрано: ${col.name}`;
-                    matPreview.style.borderColor = col.hex;
+                    if(matPreview) matPreview.style.borderColor = col.hex;
                     renderBorderColors();
                 };
                 container.appendChild(opt);
             });
 
             const activeBorderObj = borderColors.find(c => c.name === selectedBorderColor) || borderColors[0];
-            matPreview.style.borderColor = activeBorderObj.hex;
+            if(matPreview) matPreview.style.borderColor = activeBorderObj.hex;
         }
 
         function calculatePrice() {
