@@ -490,9 +490,9 @@
         <div class="section-title">3. Форма матеріалу</div>
         <div class="card">
             <div class="shape-picker">
-                <div class="shape-btn active" onclick="selectShape('Ромб')">Ромб</div>
-                <div class="shape-btn" onclick="selectShape('Сота')">Сота</div>
-                <div class="shape-btn" onclick="selectShape('Капля')">Капля</div>
+                <div class="shape-btn active" onclick="selectShape('Ромб', this)">Ромб</div>
+                <div class="shape-btn" onclick="selectShape('Сота', this)">Сота</div>
+                <div class="shape-btn" onclick="selectShape('Капля', this)">Капля</div>
             </div>
         </div>
 
@@ -529,13 +529,13 @@
                 <label class="option-label">
                     <input type="radio" name="badgeOption" value="2 шильдики з лого" data-price="250" onchange="calculatePrice(); updateBadgeVisibility();"> 2 шильдики з логотипом
                 </label>
-                <span class="price-badge">+240 грн</span>
+                <span class="price-badge">+250 грн</span>
             </div>
             <div class="option-item">
                 <label class="option-label">
                     <input type="radio" name="badgeOption" value="4 шильдики з лого" data-price="450" onchange="calculatePrice(); updateBadgeVisibility();"> 4 шильдики з логотипом
                 </label>
-                <span class="price-badge">+400 грн</span>
+                <span class="price-badge">+450 грн</span>
             </div>
         </div>
 
@@ -556,19 +556,19 @@
             </div>
             <div class="option-item">
                 <label class="option-label">
-                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="550" onchange="calculatePrice()"> Металевий підп'ятник АКПП
+                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник АКПП" data-price="550" onchange="calculatePrice()"> Металевий підп'ятник АКПП
                 </label>
                 <span class="price-badge">+550 грн</span>
             </div>
             <div class="option-item">
                 <label class="option-label">
-                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="650" onchange="calculatePrice()"> Металевий підп'ятник МКПП
+                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник МКПП" data-price="650" onchange="calculatePrice()"> Металевий підп'ятник МКПП
                 </label>
                 <span class="price-badge">+650 грн</span>
             </div>
             <div class="option-item">
                 <label class="option-label">
-                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="450" onchange="calculatePrice()"> Резиновий підп'ятник
+                    <input type="checkbox" class="addon-checkbox" data-name="Гумовий підп'ятник" data-price="450" onchange="calculatePrice()"> Гумовий підп'ятник
                 </label>
                 <span class="price-badge">+450 грн</span>
             </div>
@@ -619,50 +619,48 @@
         const CHAT_ID = "6989607556";
 
         const autoDatabase = {
-            {
-  "Acura": ["Integra", "MDX", "NSX", "RDX", "RSX", "TLX", "TSX", "ZDX"],
-  "Alfa Romeo": ["147", "156", "159", "4C", "8C Competizione", "Giulia", "Giulietta", "Stelvio", "Tonale"],
-  "Aston Martin": ["DB9", "DB11", "DB12", "DBS", "DBX", "Rapide", "Vantage", "Vanquish"],
-  "Audi": ["A1", "A3", "A4 B5", "A4 B6", "A4 B7", "A4 B8", "A4 B9", "A5", "A6 C5", "A6 C6", "A6 C7", "A6 C8", "A7", "A8", "Q3", "Q4 e-tron", "Q5", "Q7", "Q8", "Q8 e-tron", "R8", "TT"],
-  "BMW": ["1 Series (F20/F40)", "2 Series", "3 Series (E30/E36/E46/E90/F30/G20)", "4 Series", "5 Series (E39/E60/F10/G30/G60)", "6 Series", "7 Series (E38/E65/F01/G11/G70)", "8 Series", "X1", "X3", "X4", "X5 (E53/E70/F15/G05)", "X6", "X7", "Z4", "i4", "i7", "iX"],
-  "BYD": ["Atto 3", "Dolphin", "Han", "Qin Plus", "Seal", "Song Plus", "Tang", "Yuan Plus"],
-  "Cadillac": ["ATS", "CT4", "CT5", "CTS", "Escalade", "Lyriq", "SRX", "XT4", "XT5", "XT6"],
-  "Chevrolet": ["Aveo", "Camaro", "Captiva", "Corvette", "Cruze", "Equinox", "Impala", "Lacetti", "Malibu", "Niva", "Orlando", "Spark", "Suburban", "Tahoe", "Tracker", "Trax"],
-  "Chrysler": ["300C", "Grand Voyager", "Pacifica", "PT Cruiser", "Sebring", "Town & Country"],
-  "Citroën": ["Berlingo", "C3", "C3 Aircross", "C4", "C4 Picasso", "C5", "C5 Aircross", "C5 X", "Jumpy"],
-  "Dacia": ["Duster", "Jogger", "Lodgy", "Logan", "Sandero", "Spring"],
-  "Daewoo": ["Lanos", "Matiz", "NEXIA", "Nubira", "Sens", "Tacuma"],
-  "Dodge": ["Avenger", "Caliber", "Challenger", "Charger", "Dart", "Durango", "Grand Caravan", "Journey", "RAM 1500"],
-  "Fiat": ["500", "500X", "Doblò", "Ducato", "Grande Punto", "Panda", "Tipo"],
-  "Ford": ["C-Max", "Edge", "Escape", "Explorer", "Fiesta", "Focus Mk1", "Focus Mk2", "Focus Mk3", "Focus Mk4", "Fusion", "Kuga", "Mondeo", "Mustang", "Mustang Mach-E", "Ranger", "Transit"],
-  "Geely": ["Atlas", "Atlas Pro", "Coolray", "Emgrand", "Monjaro", "Tugella"],
-  "Genesis": ["G70", "G80", "G90", "GV60", "GV70", "GV80"],
-  "Honda": ["Accord", "Civic", "CR-V", "HR-V", "Insight", "Odyssey", "Pilot", "Prelude", "Ridgeline"],
-  "Hyundai": ["Elantra", "Getz", "Grandeur", "Ioniq 5", "Ioniq 6", "Kona", "Palisade", "Santa Fe", "Sonata", "Tucson", "Veloster"],
-  "Infiniti": ["EX35", "FX35/FX37/FX50", "G35/G37", "JX35", "Q50", "Q60", "QX50", "QX60", "QX70", "QX80"],
-  "Jaguar": ["E-Pace", "F-Pace", "F-Type", "I-Pace", "XE", "XF", "XJ"],
-  "Jeep": ["Cherokee", "Compass", "Grand Cherokee", "Gladiator", "Patriot", "Renegade", "Wrangler"],
-  "Kia": ["Ceed", "Cerato", "EV6", "EV9", "K5", "Optima", "Picanto", "Rio", "Sorento", "Soul", "Sportage", "Stinger", "Telluride"],
-  "Land Rover": ["Defender", "Discovery", "Discovery Sport", "Range Rover", "Range Rover Evoque", "Range Rover Sport", "Range Rover Velar"],
-  "Lexus": ["CT 200h", "ES", "GS", "GX", "IS", "LC", "LS", "LX", "NX", "RX", "UX"],
-  "Lincoln": ["Aviator", "Continental", "Corsair", "MKZ", "Nautilus", "Navigator"],
-  "Mazda": ["2", "3", "6", "CX-30", "CX-5", "CX-50", "CX-60", "CX-7", "CX-9", "CX-90", "MX-5 Miata", "RX-8"],
-  "Mercedes-Benz": ["A-Class", "B-Class", "C-Class (W203/W204/W205/W206)", "CLA", "CLE", "CLS", "E-Class (W211/W212/W213/W214)", "G-Class", "GLA", "GLB", "GLC", "GLE (W166/V167)", "GLS", "S-Class (W220/W221/W222/W223)", "SL", "Sprinter", "Vito"],
-  "Mini": ["Clubman", "Cooper", "Countryman", "Paceman"],
-  "Mitsubishi": ["ASX", "Eclipse Cross", "Galant", "L200", "Lancer IX", "Lancer X", "Outlander", "Pajero", "Pajero Sport"],
-  "Nissan": ["350Z", "370Z", "Altima", "Juke", "Leaf", "Maximize", "Murano", "Navara", "Note", "Pathfinder", "Patrol", "Qashqai", "Rogue", "Sentra", "Skyline", "Teana", "X-Trail"],
-  "Opel": ["Astra F", "Astra G", "Astra H", "Astra J", "Astra K", "Corsa", "Insignia", "Mokka", "Omega", "Vectra B", "Vectra C", "Zafira"],
-  "Peugeot": ["206", "207", "208", "301", "307", "308", "407", "508", "2008", "3008", "5008", "Partner", "Rifter"],
-  "Porsche": ["718 Boxster", "718 Cayman", "911 (996/997/991/992)", "Cayenne", "Macan", "Panamera", "Taycan"],
-  "Renault": ["Arkana", "Captur", "Clio", "Duster", "Fluence", "Kadjar", "Kangoo", "Koleos", "Laguna", "Logan", "Megane", "Scenic", "Symbol", "Trafic", "Zoe"],
-  "Škoda": ["Fabia", "Kamiq", "Karoq", "Kodiaq", "Octavia Tour", "Octavia A5", "Octavia A7", "Octavia A8", "Rapid", "Scalia", "Superb", "Yeti"],
-  "Subaru": ["BRZ", "Forester", "Impreza", "Legacy", "Outback", "WRX", "XV / Crosstrek"],
-  "Suzuki": ["Grand Vitara", "Jimny", "SX4", "Swift", "Vitara"],
-  "Tesla": ["Cybertruck", "Model 3", "Model S", "Model X", "Model Y", "Roadster"],
-  "Toyota": ["4Runner", "Avalon", "Avensis", "Camry (XV30/XV40/XV50/XV70/XV80)", "Corolla", "FJ Cruiser", "Highlander", "Hilux", "Land Cruiser 80", "Land Cruiser 100", "Land Cruiser 200", "Land Cruiser 300", "Land Cruiser Prado (120/150/250)", "Prius", "RAV4", "Sequoia", "Sienna", "Tundra", "Yaris"],
-  "Volkswagen": ["Amarok", "Arteon", "Caddy", "Golf 4", "Golf 5", "Golf 6", "Golf 7", "Golf 8", "ID.3", "ID.4", "Jetta", "Passat B5", "Passat B6", "Passat B7", "Passat B8", "Polo", "Scirocco", "Sharan", "Tiguan", "Touareg", "Transporter (T4/T5/T6)"],
-  "Volvo": ["C30", "S40", "S60", "S80", "S90", "V60", "V90", "XC40", "XC60", "XC90"]
-}
+            "Acura": ["Integra", "MDX", "NSX", "RDX", "RSX", "TLX", "TSX", "ZDX"],
+            "Alfa Romeo": ["147", "156", "159", "4C", "8C Competizione", "Giulia", "Giulietta", "Stelvio", "Tonale"],
+            "Aston Martin": ["DB9", "DB11", "DB12", "DBS", "DBX", "Rapide", "Vantage", "Vanquish"],
+            "Audi": ["A1", "A3", "A4 B5", "A4 B6", "A4 B7", "A4 B8", "A4 B9", "A5", "A6 C5", "A6 C6", "A6 C7", "A6 C8", "A7", "A8", "Q3", "Q4 e-tron", "Q5", "Q7", "Q8", "Q8 e-tron", "R8", "TT"],
+            "BMW": ["1 Series (F20/F40)", "2 Series", "3 Series (E30/E36/E46/E90/F30/G20)", "4 Series", "5 Series (E39/E60/F10/G30/G60)", "6 Series", "7 Series (E38/E65/F01/G11/G70)", "8 Series", "X1", "X3", "X4", "X5 (E53/E70/F15/G05)", "X6", "X7", "Z4", "i4", "i7", "iX"],
+            "BYD": ["Atto 3", "Dolphin", "Han", "Qin Plus", "Seal", "Song Plus", "Tang", "Yuan Plus"],
+            "Cadillac": ["ATS", "CT4", "CT5", "CTS", "Escalade", "Lyriq", "SRX", "XT4", "XT5", "XT6"],
+            "Chevrolet": ["Aveo", "Camaro", "Captiva", "Corvette", "Cruze", "Equinox", "Impala", "Lacetti", "Malibu", "Niva", "Orlando", "Spark", "Suburban", "Tahoe", "Tracker", "Trax"],
+            "Chrysler": ["300C", "Grand Voyager", "Pacifica", "PT Cruiser", "Sebring", "Town & Country"],
+            "Citroën": ["Berlingo", "C3", "C3 Aircross", "C4", "C4 Picasso", "C5", "C5 Aircross", "C5 X", "Jumpy"],
+            "Dacia": ["Duster", "Jogger", "Lodgy", "Logan", "Sandero", "Spring"],
+            "Daewoo": ["Lanos", "Matiz", "NEXIA", "Nubira", "Sens", "Tacuma"],
+            "Dodge": ["Avenger", "Caliber", "Challenger", "Charger", "Dart", "Durango", "Grand Caravan", "Journey", "RAM 1500"],
+            "Fiat": ["500", "500X", "Doblò", "Ducato", "Grande Punto", "Panda", "Tipo"],
+            "Ford": ["C-Max", "Edge", "Escape", "Explorer", "Fiesta", "Focus Mk1", "Focus Mk2", "Focus Mk3", "Focus Mk4", "Fusion", "Kuga", "Mondeo", "Mustang", "Mustang Mach-E", "Ranger", "Transit"],
+            "Geely": ["Atlas", "Atlas Pro", "Coolray", "Emgrand", "Monjaro", "Tugella"],
+            "Genesis": ["G70", "G80", "G90", "GV60", "GV70", "GV80"],
+            "Honda": ["Accord", "Civic", "CR-V", "HR-V", "Insight", "Odyssey", "Pilot", "Prelude", "Ridgeline"],
+            "Hyundai": ["Elantra", "Getz", "Grandeur", "Ioniq 5", "Ioniq 6", "Kona", "Palisade", "Santa Fe", "Sonata", "Tucson", "Veloster"],
+            "Infiniti": ["EX35", "FX35/FX37/FX50", "G35/G37", "JX35", "Q50", "Q60", "QX50", "QX60", "QX70", "QX80"],
+            "Jaguar": ["E-Pace", "F-Pace", "F-Type", "I-Pace", "XE", "XF", "XJ"],
+            "Jeep": ["Cherokee", "Compass", "Grand Cherokee", "Gladiator", "Patriot", "Renegade", "Wrangler"],
+            "Kia": ["Ceed", "Cerato", "EV6", "EV9", "K5", "Optima", "Picanto", "Rio", "Sorento", "Soul", "Sportage", "Stinger", "Telluride"],
+            "Land Rover": ["Defender", "Discovery", "Discovery Sport", "Range Rover", "Range Rover Evoque", "Range Rover Sport", "Range Rover Velar"],
+            "Lexus": ["CT 200h", "ES", "GS", "GX", "IS", "LC", "LS", "LX", "NX", "RX", "UX"],
+            "Lincoln": ["Aviator", "Continental", "Corsair", "MKZ", "Nautilus", "Navigator"],
+            "Mazda": ["2", "3", "6", "CX-30", "CX-5", "CX-50", "CX-60", "CX-7", "CX-9", "CX-90", "MX-5 Miata", "RX-8"],
+            "Mercedes-Benz": ["A-Class", "B-Class", "C-Class (W203/W204/W205/W206)", "CLA", "CLE", "CLS", "E-Class (W211/W212/W213/W214)", "G-Class", "GLA", "GLB", "GLC", "GLE (W166/V167)", "GLS", "S-Class (W220/W221/W222/W223)", "SL", "Sprinter", "Vito"],
+            "Mini": ["Clubman", "Cooper", "Countryman", "Paceman"],
+            "Mitsubishi": ["ASX", "Eclipse Cross", "Galant", "L200", "Lancer IX", "Lancer X", "Outlander", "Pajero", "Pajero Sport"],
+            "Nissan": ["350Z", "370Z", "Altima", "Juke", "Leaf", "Maximize", "Murano", "Navara", "Note", "Pathfinder", "Patrol", "Qashqai", "Rogue", "Sentra", "Skyline", "Teana", "X-Trail"],
+            "Opel": ["Astra F", "Astra G", "Astra H", "Astra J", "Astra K", "Corsa", "Insignia", "Mokka", "Omega", "Vectra B", "Vectra C", "Zafira"],
+            "Peugeot": ["206", "207", "208", "301", "307", "308", "407", "508", "2008", "3008", "5008", "Partner", "Rifter"],
+            "Porsche": ["718 Boxster", "718 Cayman", "911 (996/997/991/992)", "Cayenne", "Macan", "Panamera", "Taycan"],
+            "Renault": ["Arkana", "Captur", "Clio", "Duster", "Fluence", "Kadjar", "Kangoo", "Koleos", "Laguna", "Logan", "Megane", "Scenic", "Symbol", "Trafic", "Zoe"],
+            "Škoda": ["Fabia", "Kamiq", "Karoq", "Kodiaq", "Octavia Tour", "Octavia A5", "Octavia A7", "Octavia A8", "Rapid", "Scalia", "Superb", "Yeti"],
+            "Subaru": ["BRZ", "Forester", "Impreza", "Legacy", "Outback", "WRX", "XV / Crosstrek"],
+            "Suzuki": ["Grand Vitara", "Jimny", "SX4", "Swift", "Vitara"],
+            "Tesla": ["Cybertruck", "Model 3", "Model S", "Model X", "Model Y", "Roadster"],
+            "Toyota": ["4Runner", "Avalon", "Avensis", "Camry (XV30/XV40/XV50/XV70/XV80)", "Corolla", "FJ Cruiser", "Highlander", "Hilux", "Land Cruiser 80", "Land Cruiser 100", "Land Cruiser 200", "Land Cruiser 300", "Land Cruiser Prado (120/150/250)", "Prius", "RAV4", "Sequoia", "Sienna", "Tundra", "Yaris"],
+            "Volkswagen": ["Amarok", "Arteon", "Caddy", "Golf 4", "Golf 5", "Golf 6", "Golf 7", "Golf 8", "ID.3", "ID.4", "Jetta", "Passat B5", "Passat B6", "Passat B7", "Passat B8", "Polo", "Scirocco", "Sharan", "Tiguan", "Touareg", "Transporter (T4/T5/T6)"],
+            "Volvo": ["C30", "S40", "S60", "S80", "S90", "V60", "V90", "XC40", "XC60", "XC90"]
         };
 
         const colorsByShape = {
@@ -765,32 +763,29 @@
         }
 
         function updateBadgeText() {
-            const brandSelect = document.getElementById('carBrand').value;
-            const customCar = document.getElementById('customCar').value.trim();
-            const badgeText = document.getElementById('badgeText');
-
-            if (customCar) {
-                const firstWord = customCar.split(' ')[0];
-                badgeText.innerText = firstWord.toUpperCase();
-            } else if (brandSelect) {
-                let cleanBrand = brandSelect.split('/')[0].trim();
-                badgeText.innerText = cleanBrand.toUpperCase();
+            const brand = document.getElementById('carBrand').value;
+            const custom = document.getElementById('customCar').value;
+            const badgeTextEl = document.getElementById('badgeText');
+            
+            if (custom.trim() !== '') {
+                badgeTextEl.textContent = custom.trim().toUpperCase();
+            } else if (brand !== '') {
+                badgeTextEl.textContent = brand.toUpperCase();
             } else {
-                badgeText.innerText = "LOGO";
+                badgeTextEl.textContent = 'LOGO';
             }
         }
 
-        function selectShape(shapeName) {
+        function selectShape(shapeName, el) {
             currentShape = shapeName;
-            document.querySelectorAll('.shape-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.innerText === shapeName);
-            });
+            document.querySelectorAll('.shape-btn').forEach(btn => btn.classList.remove('active'));
+            if(el) el.classList.add('active');
 
-            if (shapeName === 'Ромб') {
+            if (shapeName === "Ромб") {
                 matTextureRect.setAttribute('fill', 'url(#patternRomb)');
-            } else if (shapeName === 'Сота') {
+            } else if (shapeName === "Сота") {
                 matTextureRect.setAttribute('fill', 'url(#patternSota)');
-            } else if (shapeName === 'Капля') {
+            } else if (shapeName === "Капля") {
                 matTextureRect.setAttribute('fill', 'url(#patternKaplya)');
             }
 
@@ -800,78 +795,67 @@
         function renderBaseColors() {
             const container = document.getElementById('baseColorPicker');
             container.innerHTML = '';
-            const list = colorsByShape[currentShape] || colorsByShape["Ромб"];
+            const availableColors = colorsByShape[currentShape] || colorsByShape["Ромб"];
             
-            let isCurrentAvailable = list.some(c => c.name === selectedBaseColor);
-            if (!isCurrentAvailable) {
-                selectedBaseColor = list[0].name;
+            let exists = availableColors.some(c => c.name === selectedBaseColor);
+            if (!exists) {
+                selectedBaseColor = availableColors[0].name;
             }
 
-            list.forEach(c => {
-                const div = document.createElement('div');
-                div.className = 'color-opt' + (c.name === selectedBaseColor ? ' active' : '');
-                div.style.backgroundColor = c.hex;
-                div.onclick = () => {
-                    selectedBaseColor = c.name;
-                    document.getElementById('baseColorTitle').innerText = 'Обрано: ' + c.name;
-                    matPreview.style.backgroundColor = c.hex;
+            availableColors.forEach((col) => {
+                const opt = document.createElement('div');
+                opt.className = 'color-opt' + (col.name === selectedBaseColor ? ' active' : '');
+                opt.style.backgroundColor = col.hex;
+                opt.onclick = () => {
+                    selectedBaseColor = col.name;
+                    document.getElementById('baseColorTitle').textContent = `Обрано: ${col.name}`;
+                    matPreview.style.backgroundColor = col.hex;
                     renderBaseColors();
-                    calculatePrice();
                 };
-                container.appendChild(div);
+                container.appendChild(opt);
             });
 
-            document.getElementById('baseColorTitle').innerText = 'Обрано: ' + selectedBaseColor;
-            const activeColorObj = list.find(c => c.name === selectedBaseColor);
-            if (activeColorObj) {
-                matPreview.style.backgroundColor = activeColorObj.hex;
-            }
+            const activeColorObj = availableColors.find(c => c.name === selectedBaseColor) || availableColors[0];
+            matPreview.style.backgroundColor = activeColorObj.hex;
+            document.getElementById('baseColorTitle').textContent = `Обрано: ${activeColorObj.name}`;
         }
 
         function renderBorderColors() {
             const container = document.getElementById('borderColorPicker');
             container.innerHTML = '';
 
-            borderColors.forEach(c => {
-                const div = document.createElement('div');
-                div.className = 'color-opt' + (c.name === selectedBorderColor ? ' active' : '');
-                div.style.backgroundColor = c.hex;
-                div.onclick = () => {
-                    selectedBorderColor = c.name;
-                    document.getElementById('borderColorTitle').innerText = 'Обрано: ' + c.name;
-                    matPreview.style.borderColor = c.hex;
+            borderColors.forEach((col) => {
+                const opt = document.createElement('div');
+                opt.className = 'color-opt' + (col.name === selectedBorderColor ? ' active' : '');
+                opt.style.backgroundColor = col.hex;
+                opt.onclick = () => {
+                    selectedBorderColor = col.name;
+                    document.getElementById('borderColorTitle').textContent = `Обрано: ${col.name}`;
+                    matPreview.style.borderColor = col.hex;
                     renderBorderColors();
-                    calculatePrice();
                 };
-                container.appendChild(div);
+                container.appendChild(opt);
             });
 
-            document.getElementById('borderColorTitle').innerText = 'Обрано: ' + selectedBorderColor;
-            const activeBorderObj = borderColors.find(c => c.name === selectedBorderColor);
-            if (activeBorderObj) {
-                matPreview.style.borderColor = activeBorderObj.hex;
-            }
+            const activeBorderObj = borderColors.find(c => c.name === selectedBorderColor) || borderColors[0];
+            matPreview.style.borderColor = activeBorderObj.hex;
         }
 
         function calculatePrice() {
             let total = 0;
 
-            const selectedSet = document.querySelector('input[name="setOption"]:checked');
-            if (selectedSet) {
-                total += parseInt(selectedSet.dataset.price || 0);
-            }
+            const setOpt = document.querySelector('input[name="setOption"]:checked');
+            if (setOpt) total += parseInt(setOpt.dataset.price || 0);
 
-            const selectedBadge = document.querySelector('input[name="badgeOption"]:checked');
-            if (selectedBadge) {
-                total += parseInt(selectedBadge.dataset.price || 0);
-            }
+            const badgeOpt = document.querySelector('input[name="badgeOption"]:checked');
+            if (badgeOpt) total += parseInt(badgeOpt.dataset.price || 0);
 
-            document.querySelectorAll('.addon-checkbox:checked').forEach(addon => {
-                total += parseInt(addon.dataset.price || 0);
+            document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
+                total += parseInt(cb.dataset.price || 0);
             });
 
             calculatedTotalPrice = total;
-            document.getElementById('totalPrice').innerText = total.toLocaleString('uk-UA') + ' грн';
+            document.getElementById('totalPrice').textContent = total.toLocaleString('uk-UA') + ' грн';
         }
 
         function openModal() {
@@ -882,14 +866,14 @@
             document.getElementById('modalOverlay').classList.remove('active');
         }
 
-        async function sendOrderToTelegram() {
+        function sendOrderToTelegram() {
             const name = document.getElementById('clientName').value.trim();
             const phone = document.getElementById('clientPhone').value.trim();
             const city = document.getElementById('clientCity').value.trim();
             const comment = document.getElementById('clientComment').value.trim();
 
-            if (!name || !phone) {
-                alert('Будь ласка, вкажіть ваше ім\'я та номер телефону!');
+            if (!name || !phone || !city) {
+                alert("Будь ласка, заповніть обов'язкові поля: Ім'я, Телефон та Доставку!");
                 return;
             }
 
@@ -898,62 +882,63 @@
             const customCar = document.getElementById('customCar').value.trim();
             const year = document.getElementById('carYear').value.trim();
 
-            let carInfo = customCar ? customCar : (brand ? `${brand} ${model}` : "Не вказано");
+            let carInfo = customCar ? customCar : `${brand} ${model}`;
             if (year) carInfo += ` (${year} р.)`;
+            if (!carInfo.trim()) carInfo = "Не вказано";
 
-            const setOption = document.querySelector('input[name="setOption"]:checked')?.value || "Не обрано";
-            const badgeOption = document.querySelector('input[name="badgeOption"]:checked')?.value || "Без шильдиків";
+            const setOpt = document.querySelector('input[name="setOption"]:checked')?.value || "Не обрано";
+            const badgeOpt = document.querySelector('input[name="badgeOption"]:checked')?.value || "Без шильдиків";
 
             let addons = [];
             document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
                 addons.push(cb.dataset.name);
             });
-            let addonsText = addons.length > 0 ? addons.join(', ') : 'Немає';
+            const addonsText = addons.length > 0 ? addons.join(', ') : 'Немає';
 
-            const message = `🚨 <b>НОВЕ ЗАМОВЛЕННЯ EVA-KOVRIK-ZP</b> 🚨\n\n` +
+            const message = `🚀 <b>НОВЕ ЗАМОВЛЕННЯ!</b>\n\n` +
                 `👤 <b>Клієнт:</b> ${name}\n` +
                 `📞 <b>Телефон:</b> ${phone}\n` +
-                `📍 <b>Доставка:</b> ${city || 'Не вказано'}\n\n` +
-                `🚗 <b>Автомобіль:</b> ${carInfo}\n` +
-                `📦 <b>Комплект:</b> ${setOption}\n` +
-                `📐 <b>Структура:</b> ${currentShape}\n` +
-                `🎨 <b>Колір килимка:</b> ${selectedBaseColor}\n` +
-                `🧵 <b>Колір канта:</b> ${selectedBorderColor}\n` +
-                `🏷 <b>Шильдики:</b> ${badgeOption}\n` +
-                `➕ <b>Дод. опції:</b> ${addonsText}\n` +
-                `📝 <b>Коментар:</b> ${comment || 'Немає'}\n\n` +
-                `💰 <b>Загальна сума:</b> ${calculatedTotalPrice} грн`;
+                `📍 <b>Доставка:</b> ${city}\n\n` +
+                `🚗 <b>Авто:</b> ${carInfo}\n` +
+                `📦 <b>Комплект:</b> ${setOpt}\n` +
+                `📐 <b>Форма:</b> ${currentShape}\n` +
+                `🎨 <b>Колір:</b> ${selectedBaseColor}\n` +
+                `🧵 <b>Окантовка:</b> ${selectedBorderColor}\n` +
+                `🏷️ <b>Шильдики:</b> ${badgeOpt}\n` +
+                `➕ <b>Додатково:</b> ${addonsText}\n` +
+                (comment ? `💬 <b>Коментар:</b> ${comment}\n` : '') +
+                `\n💰 <b>Сума: ${calculatedTotalPrice} грн</b>`;
 
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Надсилання...";
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = "Надсилання...";
 
-            try {
-                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: message,
-                        parse_mode: 'HTML'
-                    })
-                });
-
-                const data = await response.json();
-
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    parse_mode: 'HTML',
+                    text: message
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
                 if (data.ok) {
-                    alert('Дякуємо! Ваше замовлення успішно прийнято. Ми зв\'яжемося з вами найближчим часом.');
+                    alert("Дякуємо! Ваше замовлення успішно прийняте. Ми зв'яжемося з Вами найближчим часом!");
                     closeModal();
                 } else {
-                    alert('Помилка при надсиланні замовлення. Будь ласка, зателефонуйте нам напряму.');
+                    alert("Помилка відправки. Будь ласка, зателефонуйте нам або напишіть у Telegram.");
                 }
-            } catch (error) {
-                console.error(error);
-                alert('Помилка мережі. Перевірте з\'єднання або зателефонуйте нам.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Підтвердити замовлення";
-            }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Сталася помилка з'єднання. Спробуйте ще раз.");
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = "Підтвердити замовлення";
+            });
         }
     </script>
 </body>
