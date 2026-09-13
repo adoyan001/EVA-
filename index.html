@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Конструктор EVA-килимків | EVA-KOVRIK-ZP</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            padding-bottom: 140px;
+        }
+
+        /* Шапка */
+        header {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .contact-header {
+            display: flex;
+            gap: 8px;
+        }
+
+        .contact-btn {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Прев'ю коврика */
+        .preview-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .mat-visual {
+            width: 180px;
+            height: 220px;
+            margin: 0 auto 12px;
+            border-radius: 24px 24px 12px 12px;
+            background-color: #18181b; 
+            border: 14px solid #ef4444; 
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mat-texture {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.35;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        /* Металевий шильдик */
+        .metal-badge {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 45%, #cbd5e1 55%, #64748b 100%);
+            border: 1px solid #f8fafc;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.8), inset 0 -1px 2px rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+
+        .metal-badge-text {
+            font-size: 10px;
+            font-weight: 900;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.6), -0.5px -0.5px 0px rgba(0,0,0,0.7);
+        }
+
+        .metal-badge::before, .metal-badge::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #334155;
+            border-radius: 50%;
+            box-shadow: inset 0.5px 0.5px 0.5px rgba(0,0,0,0.8), 0.5px 0.5px 0.5px rgba(255,255,255,0.5);
+        }
+        .metal-badge::before { left: 3px; }
+        .metal-badge::after { right: 3px; }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 18px 0 8px 4px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Поля ввода и селекты */
+        select, input[type="text"], input[type="tel"], textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 15px;
+            background: #0f172a;
+            color: #ffffff;
+            outline: none;
+            margin-bottom: 10px;
+            display: block;
+            -webkit-appearance: none;
+            appearance: none;
+            position: relative;
+            z-index: 5;
+        }
+
+        select:disabled {
+            opacity: 0.5;
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        select:focus, input:focus, textarea:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        select option {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        /* Вибір форми матеріалу */
+        .shape-picker {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .shape-btn {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 8px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .shape-btn.active {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Палітра */
+        .color-picker {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 6px 4px 12px;
+            scrollbar-width: none;
+        }
+        .color-picker::-webkit-scrollbar { display: none; }
+
+        .color-opt {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 3px solid transparent;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .color-opt.active {
+            border-color: #38bdf8;
+            transform: scale(1.15);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        }
+
+        .color-label {
+            font-size: 12px;
+            color: #38bdf8;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        /* Опції */
+        .option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .option-item:last-child { border-bottom: none; }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .option-item input[type="checkbox"],
+        .option-item input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #38bdf8;
+            cursor: pointer;
+        }
+
+        .price-badge {
+            font-size: 13px;
+            font-weight: 600;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 4px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        /* Футер */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .total-price span { font-size: 12px; color: #94a3b8; }
+        .total-price strong { font-size: 22px; color: #38bdf8; display: block; }
+
+        .btn-buy {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Поп-ап */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 28px 28px 0 0;
+            padding: 24px 20px 32px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .close-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">EVA-KOVRIK-ZP</div>
+        <div class="contact-header">
+            <a href="tel:+380972588288" class="contact-btn">📞 Дзвінок</a>
+            <a href="https://t.me/eva_kovrik_zp" target="_blank" class="contact-btn">💬 Telegram</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Прев'ю -->
+        <div class="preview-card">
+            <div class="mat-visual" id="matPreview">
+                <svg class="mat-texture" id="matTextureSVG" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                    <defs>
+                        <pattern id="patternRomb" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 20 10 L 10 20 L 0 10 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                            <path d="M 10 3 L 17 10 L 10 17 L 3 10 Z" fill="rgba(0,0,0,0.3)"/>
+                        </pattern>
+                        <pattern id="patternSota" width="24" height="20.78" patternUnits="userSpaceOnUse">
+                            <path d="M 12 0 L 24 6.93 L 24 20.78 L 12 27.71 L 0 20.78 L 0 6.93 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                        </pattern>
+                        <pattern id="patternKaplya" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 C 15 8, 18 12, 10 20 C 2 12, 5 8, 10 0 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" id="matTextureRect" fill="url(#patternRomb)"/>
+                </svg>
+                <div class="metal-badge" id="previewBadge">
+                    <span class="metal-badge-text" id="badgeText">LOGO</span>
+                </div>
+            </div>
+            <span style="font-size: 13px; color: #94a3b8;">Інтерактивний предперегляд структури</span>
+        </div>
+
+        <!-- 1. Автомобіль -->
+        <div class="section-title">1. Оберіть автомобіль</div>
+        <div class="card">
+            <select id="carBrand" onchange="updateModels(); updateBadgeText();">
+                <option value="">Марка авто...</option>
+            </select>
+            <select id="carModel" disabled>
+                <option value="">Спочатку оберіть марку</option>
+            </select>
+            <input type="text" id="customCar" placeholder="Або введіть марку/модель вручну" oninput="updateBadgeText()">
+            <input type="text" id="carYear" placeholder="Рік випуску (наприклад: 2012)">
+        </div>
+
+        <!-- 2. Комплектація -->
+        <div class="section-title">2. Комплектація килимків</div>
+        <div class="card">
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="setOption" value="Водійський килимок" data-price="600" onchange="calculatePrice()"> Водійський килимок
+                </label>
+                <span class="price-badge">600 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="setOption" value="2 передніх килимка" data-price="1300" onchange="calculatePrice()"> 2 передніх килимка
+                </label>
+                <span class="price-badge">1 300 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="setOption" value="2 задніх килимка" data-price="1300" onchange="calculatePrice()"> 2 задніх килимка
+                </label>
+                <span class="price-badge">1 300 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="setOption" value="Повний комплект (4 шт)" data-price="2000" checked onchange="calculatePrice()"> Повний комплект (4 шт)
+                </label>
+                <span class="price-badge">2 000 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="setOption" value="Килимок у багажник" data-price="1500" onchange="calculatePrice()"> Килимок у багажник
+                </label>
+                <span class="price-badge">1 500 грн</span>
+            </div>
+        </div>
+
+        <!-- 3. Форма матеріалу -->
+        <div class="section-title">3. Форма матеріалу</div>
+        <div class="card">
+            <div class="shape-picker">
+                <div class="shape-btn active" onclick="selectShape('Ромб')">Ромб</div>
+                <div class="shape-btn" onclick="selectShape('Сота')">Сота</div>
+                <div class="shape-btn" onclick="selectShape('Капля')">Капля</div>
+            </div>
+        </div>
+
+        <!-- 4. Колір матеріалу -->
+        <div class="section-title">4. Колір матеріалу</div>
+        <div class="card">
+            <div class="color-picker" id="baseColorPicker"></div>
+            <div class="color-label" id="baseColorTitle">Обрано: Чорний</div>
+        </div>
+
+        <!-- 5. Колір окантовки -->
+        <div class="section-title">5. Колір окантовки</div>
+        <div class="card">
+            <div class="color-picker" id="borderColorPicker"></div>
+            <div class="color-label" id="borderColorTitle">Обрано: Червона</div>
+        </div>
+
+        <!-- 6. Шильдики з логотипом -->
+        <div class="section-title">6. Шильдики з логотипом</div>
+        <div class="card">
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="badgeOption" value="Без шильдиків" data-price="0" checked onchange="calculatePrice(); updateBadgeVisibility();"> Без шильдиків
+                </label>
+                <span class="price-badge">0 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="badgeOption" value="1 шильдик з лого" data-price="150" onchange="calculatePrice(); updateBadgeVisibility();"> 1 шильдик з логотипом
+                </label>
+                <span class="price-badge">+150 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="badgeOption" value="2 шильдики з лого" data-price="250" onchange="calculatePrice(); updateBadgeVisibility();"> 2 шильдики з логотипом
+                </label>
+                <span class="price-badge">+250 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="radio" name="badgeOption" value="4 шильдики з лого" data-price="450" onchange="calculatePrice(); updateBadgeVisibility();"> 4 шильдики з логотипом
+                </label>
+                <span class="price-badge">+450 грн</span>
+            </div>
+        </div>
+
+        <!-- 7. Додаткові опції -->
+        <div class="section-title">7. Додаткові опції</div>
+        <div class="card">
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="checkbox" class="addon-checkbox" data-name="3D лапа" data-price="100" onchange="calculatePrice()"> 3D лапа
+                </label>
+                <span class="price-badge">+100 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="checkbox" class="addon-checkbox" data-name="Килимок на тунель" data-price="200" onchange="calculatePrice()"> Килимок на тунель
+                </label>
+                <span class="price-badge">+200 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="300" onchange="calculatePrice()"> Металевий підп'ятник
+                </label>
+                <span class="price-badge">+300 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="checkbox" class="addon-checkbox" id="trunkAddon" data-name="Килимок у багажник (додатково)" data-price="1500" onchange="calculatePrice()"> Килимок у багажник
+                </label>
+                <span class="price-badge">+1 500 грн</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 25px 0 10px; color: #94a3b8; font-size: 13px;">
+            Є питання чи потрібна консультація?<br>
+            <a href="tel:+380972588288" style="color: #38bdf8; font-weight: 700; text-decoration: none;">Зв'язатися з нами: +380 (97) 258-82-88</a>
+        </div>
+
+    </div>
+
+    <!-- Футер -->
+    <div class="sticky-footer">
+        <div class="total-price">
+            <span>Разом до сплати:</span>
+            <strong id="totalPrice">2 000 грн</strong>
+        </div>
+        <button class="btn-buy" onclick="openModal()">Замовити</button>
+    </div>
+
+    <!-- Поп-ап -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Оформлення замовлення</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 14px;">Вкажіть дані для відправки Новою Поштою:</p>
+            
+            <input type="text" id="clientName" placeholder="Ваше Ім'я та Прізвище">
+            <input type="tel" id="clientPhone" placeholder="Номер телефону (+380...)">
+            <input type="text" id="clientCity" placeholder="Місто та № відділення Нової Пошти">
+            <textarea id="clientComment" rows="3" placeholder="Коментар або побажання до замовлення..."></textarea>
+
+            <button class="btn-submit" id="submitBtn" onclick="sendOrderToTelegram()">Підтвердити замовлення</button>
+        </div>
+    </div>
+
+    <script>
+        const BOT_TOKEN = "8920882586:AAFelfNJ96YqNs-hftMKBupAQm6EeP2jpS4";
+        const CHAT_ID = "6989607556";
+
+        const autoDatabase = {
+            "ВАЗ / LADA": ["2101", "2102", "2103", "2104", "2105", "2106", "2107", "2108", "2109", "21099", "2110", "2111", "2112", "2113", "2114", "2115", "Kalina", "Priora", "Granta", "Vesta", "Niva 2121 / 21214", "Niva Urban", "Niva Travel / Chevrolet Niva"],
+            "Ford": ["Focus 1", "Focus 2", "Focus 3", "Focus 4", "Fiesta", "Fusion", "Mondeo 3", "Mondeo 4", "Mondeo 5", "Kuga", "Escape", "C-Max", "S-Max", "Transit", "Edge", "Mustang"],
+            "Chevrolet": ["Trax / Tracker", "Aveo T200", "Aveo T250", "Aveo T300", "Lacetti", "Cruze", "Captiva", "Epica", "Volt", "Bolt", "Tahoe", "Camaro", "Evanda", "Spark"],
+            "Toyota": ["Camry 30", "Camry 40", "Camry 50/55", "Camry 70", "Corolla E120", "Corolla E150", "Corolla E170", "RAV4 XA30", "RAV4 XA40", "RAV4 XA50", "Land Cruiser Prado 120", "Land Cruiser Prado 150", "Land Cruiser 200", "Avensis T250", "Avensis T270", "Yaris", "Highlander", "C-HR", "Prius"],
+            "Volkswagen": ["Golf 4", "Golf 5", "Golf 6", "Golf 7", "Golf 8", "Passat B5", "Passat B6", "Passat B7", "Passat B8", "Passat CC", "Tiguan", "Touareg", "Jetta 5", "Jetta 6", "Jetta 7", "Polo", "Transporter T4", "Transporter T5", "Transporter T6", "Caddy", "Touran", "Arteon"],
+            "Skoda": ["Octavia Tour", "Octavia A5", "Octavia A7", "Octavia A8", "Fabia 1", "Fabia 2", "Fabia 3", "Superb 1", "Superb 2", "Superb 3", "Rapid", "Kodiaq", "Karoq", "Kamiq", "Yeti"],
+            "BMW": ["3 Series E36", "3 Series E46", "3 Series E90", "3 Series F30", "3 Series G20", "5 Series E39", "5 Series E60", "5 Series F10", "5 Series G30", "X1", "X3 E83", "X3 F25", "X3 G01", "X5 E53", "X5 E70", "X5 F15", "X5 G05", "X6"],
+            "Mercedes-Benz": ["W124", "W202 (C-Class)", "W203", "W204", "W205", "W210 (E-Class)", "W211", "W212", "W213", "W220 (S-Class)", "W221", "W222", "ML / GLE W163", "ML / GLE W164", "ML / GLE W166", "Sprinter", "Vito / Viano"],
+            "Audi": ["A3", "A4 B5", "A4 B6", "A4 B7", "A4 B8", "A4 B9", "A6 C5", "A6 C6", "A6 C7", "A6 C8", "A8", "Q3", "Q5", "Q7", "Q8"],
+            "Hyundai": ["Tucson 1", "Tucson 2 / ix35", "Tucson 3", "Tucson 4", "Santa Fe 1", "Santa Fe 2", "Santa Fe 3", "Santa Fe 4", "Elantra", "Sonata", "Accent", "i30", "Getz", "Creta", "Kona"],
+            "KIA": ["Sportage 2", "Sportage 3", "Sportage 4", "Sportage 5", "Ceed 1", "Ceed 2", "Ceed 3", "Rio 2", "Rio 3", "Rio 4", "Optima", "K5", "Cerato", "Sorento", "Soul"],
+            "Nissan": ["Qashqai J10", "Qashqai J11", "X-Trail T30", "X-Trail T31", "X-Trail T32", "Juke", "Rogue", "Leaf", "Almera", "Micra", "Note", "Murano", "Navara", "Pathfinder"],
+            "Renault": ["Duster", "Logan", "Sandero", "Megane 2", "Megane 3", "Megane 4", "Scenic 2", "Scenic 3", "Fluence", "Clio", "Kaptur", "Kadjar", "Master", "Trafic"],
+            "Mitsubishi": ["Lancer 9", "Lancer 10", "Outlander XL", "Outlander 3", "Pajero 3", "Pajero 4", "Pajero Sport", "ASX", "Grandis", "Colt"],
+            "Mazda": ["Mazda 3 BK", "Mazda 3 BL", "Mazda 3 BM", "Mazda 6 GG", "Mazda 6 GH", "Mazda 6 GJ", "CX-5", "CX-7", "CX-9"],
+            "Honda": ["Civic 4D", "Civic 5D", "Accord 7", "Accord 8", "Accord 9", "Accord 10", "CR-V 3", "CR-V 4", "CR-V 5", "HR-V", "Pilot"],
+            "Subaru": ["Forester", "Outback", "Legacy", "Impreza", "XV"],
+            "Lexus": ["IS", "ES", "GS", "RX 300/330/350", "RX 200t/350 (2015+)", "GX 470", "GX 460", "LX 470", "LX 570"],
+            "Daewoo / ZAZ": ["Lanos / Sens", "Matiz", "NEXIA", "ZAZ Vida", "ZAZ Forza", "ZAZ Tavria / Slavuta"],
+            "Opel": ["Astra G", "Astra H", "Astra J", "Astra K", "Vectra B", "Vectra C", "Insignia", "Zafira A", "Zafira B", "Corsa", "Vivaro", "Mokka"],
+            "Peugeot": ["206", "207", "307", "308", "407", "508", "2008", "3008", "5008", "Partner", "Boxer"],
+            "Citroen": ["C3", "C4", "C5", "Berlingo", "Jumper", "C-Elysee"],
+            "Fiat": ["Doblo", "Ducato", "500", "Panda", "Punto", "Tipo"],
+            "Jeep": ["Grand Cherokee", "Cherokee", "Compass", "Renegade", "Wrangler"],
+            "Volvo": ["S40", "S60", "S80", "XC60", "XC90"]
+        };
+
+        const colorsByShape = {
+            "Ромб": [
+                { name: "Чорний", hex: "#18181b" },
+                { name: "Сірий", hex: "#52525b" },
+                { name: "Коричневий", hex: "#78350f" },
+                { name: "Червоний", hex: "#991111" },
+                { name: "Салатовий", hex: "#84cc16" },
+                { name: "Хакі", hex: "#3f6212" },
+                { name: "Синій", hex: "#1e3a8a" },
+                { name: "Світло-синій", hex: "#38bdf8" },
+                { name: "Бордо", hex: "#800020" },
+                { name: "Помаранчевий", hex: "#ea580c" },
+                { name: "Бежевий", hex: "#d97706" },
+                { name: "Кремовий", hex: "#fef08a" },
+                { name: "Кемел", hex: "#c19a6b" },
+                { name: "Жовтий", hex: "#eab308" }
+            ],
+            "Сота": [
+                { name: "Чорний", hex: "#18181b" },
+                { name: "Сірий", hex: "#52525b" },
+                { name: "Коричневий", hex: "#78350f" }
+            ],
+            "Капля": [
+                { name: "Чорний", hex: "#18181b" },
+                { name: "Сірий", hex: "#52525b" },
+                { name: "Світло-сірий", hex: "#d4d4d8" },
+                { name: "Мокко", hex: "#4a3b32" },
+                { name: "Рожевий", hex: "#ec4899" }
+            ]
+        };
+
+        const borderColors = [
+            { name: "Чорна", hex: "#18181b" },
+            { name: "Сіра", hex: "#52525b" },
+            { name: "Червона", hex: "#ef4444" },
+            { name: "Синя", hex: "#3b82f6" },
+            { name: "Жовта", hex: "#eab308" },
+            { name: "Зелена", hex: "#10b981" },
+            { name: "Бежева", hex: "#d97706" },
+            { name: "Коричнева", hex: "#78350f" },
+            { name: "Біла", hex: "#ffffff" },
+            { name: "Помаранчева", hex: "#ea580c" },
+            { name: "Бордо", hex: "#800020" },
+            { name: "Фіолетова", hex: "#a855f7" }
+        ];
+
+        const matPreview = document.getElementById('matPreview');
+        const matTextureRect = document.getElementById('matTextureRect');
+        
+        let currentShape = "Ромб";
+        let selectedBaseColor = "Чорний";
+        let selectedBorderColor = "Червона";
+        let calculatedTotalPrice = 2000;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const brandSelect = document.getElementById('carBrand');
+            for (let brand in autoDatabase) {
+                let opt = document.createElement('option');
+                opt.value = brand;
+                opt.textContent = brand;
+                brandSelect.appendChild(opt);
+            }
+            renderBaseColors();
+            renderBorderColors();
+            calculatePrice();
+            updateBadgeVisibility();
+            updateBadgeText();
+        });
+
+        function updateModels() {
+            const brandSelect = document.getElementById('carBrand').value;
+            const modelSelect = document.getElementById('carModel');
+            
+            modelSelect.innerHTML = '<option value="">Оберіть модель...</option>';
+            
+            if (brandSelect && autoDatabase[brandSelect]) {
+                modelSelect.disabled = false;
+                autoDatabase[brandSelect].forEach(model => {
+                    let opt = document.createElement('option');
+                    opt.value = model;
+                    opt.textContent = model;
+                    modelSelect.appendChild(opt);
+                });
+            } else {
+                modelSelect.disabled = true;
+            }
+        }
+
+        function updateBadgeVisibility() {
+            const selectedBadge = document.querySelector('input[name="badgeOption"]:checked');
+            const previewBadge = document.getElementById('previewBadge');
+            
+            if (selectedBadge && selectedBadge.value !== "Без шильдиків") {
+                previewBadge.style.display = "flex";
+            } else {
+                previewBadge.style.display = "none";
+            }
+        }
+
+        function updateBadgeText() {
+            const brandSelect = document.getElementById('carBrand').value;
+            const customCar = document.getElementById('customCar').value.trim();
+            const badgeText = document.getElementById('badgeText');
+
+            if (customCar) {
+                const firstWord = customCar.split(' ')[0];
+                badgeText.innerText = firstWord.toUpperCase();
+            } else if (brandSelect) {
+                let cleanBrand = brandSelect.split('/')[0].trim();
+                badgeText.innerText = cleanBrand.toUpperCase();
+            } else {
+                badgeText.innerText = "LOGO";
+            }
+        }
+
+        function selectShape(shapeName) {
+            currentShape = shapeName;
+            document.querySelectorAll('.shape-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText === shapeName);
+            });
+
+            if (shapeName === 'Ромб') {
+                matTextureRect.setAttribute('fill', 'url(#patternRomb)');
+            } else if (shapeName === 'Сота') {
+                matTextureRect.setAttribute('fill', 'url(#patternSota)');
+            } else if (shapeName === 'Капля') {
+                matTextureRect.setAttribute('fill', 'url(#patternKaplya)');
+            }
+
+            renderBaseColors();
+        }
+
+        function renderBaseColors() {
+            const container = document.getElementById('baseColorPicker');
+            container.innerHTML = '';
+            const list = colorsByShape[currentShape] || colorsByShape["Ромб"];
+            
+            let isCurrentAvailable = list.some(c => c.name === selectedBaseColor);
+            if (!isCurrentAvailable) {
+                selectedBaseColor = list[0].name;
+            }
+
+            list.forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'color-opt' + (c.name === selectedBaseColor ? ' active' : '');
+                div.style.backgroundColor = c.hex;
+                div.onclick = () => {
+                    selectedBaseColor = c.name;
+                    document.getElementById('baseColorTitle').innerText = 'Обрано: ' + c.name;
+                    matPreview.style.backgroundColor = c.hex;
+                    renderBaseColors();
+                    calculatePrice();
+                };
+                container.appendChild(div);
+            });
+
+            document.getElementById('baseColorTitle').innerText = 'Обрано: ' + selectedBaseColor;
+            const activeColorObj = list.find(c => c.name === selectedBaseColor);
+            if (activeColorObj) {
+                matPreview.style.backgroundColor = activeColorObj.hex;
+            }
+        }
+
+        function renderBorderColors() {
+            const container = document.getElementById('borderColorPicker');
+            container.innerHTML = '';
+
+            borderColors.forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'color-opt' + (c.name === selectedBorderColor ? ' active' : '');
+                div.style.backgroundColor = c.hex;
+                div.onclick = () => {
+                    selectedBorderColor = c.name;
+                    document.getElementById('borderColorTitle').innerText = 'Обрано: ' + c.name;
+                    matPreview.style.borderColor = c.hex;
+                    renderBorderColors();
+                    calculatePrice();
+                };
+                container.appendChild(div);
+            });
+
+            document.getElementById('borderColorTitle').innerText = 'Обрано: ' + selectedBorderColor;
+            const activeBorderObj = borderColors.find(c => c.name === selectedBorderColor);
+            if (activeBorderObj) {
+                matPreview.style.borderColor = activeBorderObj.hex;
+            }
+        }
+
+        function calculatePrice() {
+            let total = 0;
+
+            const selectedSet = document.querySelector('input[name="setOption"]:checked');
+            if (selectedSet) {
+                total += parseInt(selectedSet.dataset.price || 0);
+            }
+
+            const selectedBadge = document.querySelector('input[name="badgeOption"]:checked');
+            if (selectedBadge) {
+                total += parseInt(selectedBadge.dataset.price || 0);
+            }
+
+            document.querySelectorAll('.addon-checkbox:checked').forEach(addon => {
+                total += parseInt(addon.dataset.price || 0);
+            });
+
+            calculatedTotalPrice = total;
+            document.getElementById('totalPrice').innerText = total.toLocaleString('uk-UA') + ' грн';
+        }
+
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        async function sendOrderToTelegram() {
+            const name = document.getElementById('clientName').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const city = document.getElementById('clientCity').value.trim();
+            const comment = document.getElementById('clientComment').value.trim();
+
+            if (!name || !phone) {
+                alert('Будь ласка, вкажіть ваше ім\'я та номер телефону!');
+                return;
+            }
+
+            const brand = document.getElementById('carBrand').value;
+            const model = document.getElementById('carModel').value;
+            const customCar = document.getElementById('customCar').value.trim();
+            const year = document.getElementById('carYear').value.trim();
+
+            let carInfo = customCar ? customCar : (brand ? `${brand} ${model}` : "Не вказано");
+            if (year) carInfo += ` (${year} р.)`;
+
+            const setOption = document.querySelector('input[name="setOption"]:checked')?.value || "Не обрано";
+            const badgeOption = document.querySelector('input[name="badgeOption"]:checked')?.value || "Без шильдиків";
+
+            let addons = [];
+            document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
+                addons.push(cb.dataset.name);
+            });
+            let addonsText = addons.length > 0 ? addons.join(', ') : 'Немає';
+
+            const message = `🚨 <b>НОВЕ ЗАМОВЛЕННЯ EVA-KOVRIK-ZP</b> 🚨\n\n` +
+                `👤 <b>Клієнт:</b> ${name}\n` +
+                `📞 <b>Телефон:</b> ${phone}\n` +
+                `📍 <b>Доставка:</b> ${city || 'Не вказано'}\n\n` +
+                `🚗 <b>Автомобіль:</b> ${carInfo}\n` +
+                `📦 <b>Комплект:</b> ${setOption}\n` +
+                `📐 <b>Структура:</b> ${currentShape}\n` +
+                `🎨 <b>Колір килимка:</b> ${selectedBaseColor}\n` +
+                `🧵 <b>Колір канта:</b> ${selectedBorderColor}\n` +
+                `🏷 <b>Шильдики:</b> ${badgeOption}\n` +
+                `➕ <b>Дод. опції:</b> ${addonsText}\n` +
+                `📝 <b>Коментар:</b> ${comment || 'Немає'}\n\n` +
+                `💰 <b>Загальна сума:</b> ${calculatedTotalPrice} грн`;
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Надсилання...";
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    alert('Дякуємо! Ваше замовлення успішно прийнято. Ми зв\'яжемося з вами найближчим часом.');
+                    closeModal();
+                } else {
+                    alert('Помилка при надсиланні замовлення. Будь ласка, зателефонуйте нам напряму.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Помилка мережі. Перевірте з\'єднання або зателефонуйте нам.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Підтвердити замовлення";
+            }
+        }
+    </script>
+</body>
+</html>
