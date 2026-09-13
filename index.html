@@ -468,9 +468,9 @@
             </div>
             <div class="option-item">
                 <label class="option-label">
-                    <input type="radio" name="setOption" value="2 задніх килимка" data-price="1300" onchange="calculatePrice()"> 2 задніх килимка
+                    <input type="radio" name="setOption" value="2 задніх килимка" data-price="1000" onchange="calculatePrice()"> 2 задніх килимка
                 </label>
-                <span class="price-badge">1 300 грн</span>
+                <span class="price-badge">1 000 грн</span>
             </div>
             <div class="option-item">
                 <label class="option-label">
@@ -529,13 +529,13 @@
                 <label class="option-label">
                     <input type="radio" name="badgeOption" value="2 шильдики з лого" data-price="250" onchange="calculatePrice(); updateBadgeVisibility();"> 2 шильдики з логотипом
                 </label>
-                <span class="price-badge">+250 грн</span>
+                <span class="price-badge">+240 грн</span>
             </div>
             <div class="option-item">
                 <label class="option-label">
                     <input type="radio" name="badgeOption" value="4 шильдики з лого" data-price="450" onchange="calculatePrice(); updateBadgeVisibility();"> 4 шильдики з логотипом
                 </label>
-                <span class="price-badge">+450 грн</span>
+                <span class="price-badge">+400 грн</span>
             </div>
         </div>
 
@@ -556,9 +556,21 @@
             </div>
             <div class="option-item">
                 <label class="option-label">
-                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="300" onchange="calculatePrice()"> Металевий підп'ятник
+                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="550" onchange="calculatePrice()"> Металевий підп'ятник АКПП
                 </label>
-                <span class="price-badge">+300 грн</span>
+                <span class="price-badge">+550 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="650" onchange="calculatePrice()"> Металевий підп'ятник МКПП
+                </label>
+                <span class="price-badge">+650 грн</span>
+            </div>
+            <div class="option-item">
+                <label class="option-label">
+                    <input type="checkbox" class="addon-checkbox" data-name="Металевий підп'ятник" data-price="450" onchange="calculatePrice()"> Резиновий підп'ятник
+                </label>
+                <span class="price-badge">+450 грн</span>
             </div>
             <div class="option-item">
                 <label class="option-label">
@@ -607,31 +619,50 @@
         const CHAT_ID = "6989607556";
 
         const autoDatabase = {
-            "ВАЗ / LADA": ["2101", "2102", "2103", "2104", "2105", "2106", "2107", "2108", "2109", "21099", "2110", "2111", "2112", "2113", "2114", "2115", "Kalina", "Priora", "Granta", "Vesta", "Niva 2121 / 21214", "Niva Urban", "Niva Travel / Chevrolet Niva"],
-            "Ford": ["Focus 1", "Focus 2", "Focus 3", "Focus 4", "Fiesta", "Fusion", "Mondeo 3", "Mondeo 4", "Mondeo 5", "Kuga", "Escape", "C-Max", "S-Max", "Transit", "Edge", "Mustang"],
-            "Chevrolet": ["Trax / Tracker", "Aveo T200", "Aveo T250", "Aveo T300", "Lacetti", "Cruze", "Captiva", "Epica", "Volt", "Bolt", "Tahoe", "Camaro", "Evanda", "Spark"],
-            "Toyota": ["Camry 30", "Camry 40", "Camry 50/55", "Camry 70", "Corolla E120", "Corolla E150", "Corolla E170", "RAV4 XA30", "RAV4 XA40", "RAV4 XA50", "Land Cruiser Prado 120", "Land Cruiser Prado 150", "Land Cruiser 200", "Avensis T250", "Avensis T270", "Yaris", "Highlander", "C-HR", "Prius"],
-            "Volkswagen": ["Golf 4", "Golf 5", "Golf 6", "Golf 7", "Golf 8", "Passat B5", "Passat B6", "Passat B7", "Passat B8", "Passat CC", "Tiguan", "Touareg", "Jetta 5", "Jetta 6", "Jetta 7", "Polo", "Transporter T4", "Transporter T5", "Transporter T6", "Caddy", "Touran", "Arteon"],
-            "Skoda": ["Octavia Tour", "Octavia A5", "Octavia A7", "Octavia A8", "Fabia 1", "Fabia 2", "Fabia 3", "Superb 1", "Superb 2", "Superb 3", "Rapid", "Kodiaq", "Karoq", "Kamiq", "Yeti"],
-            "BMW": ["3 Series E36", "3 Series E46", "3 Series E90", "3 Series F30", "3 Series G20", "5 Series E39", "5 Series E60", "5 Series F10", "5 Series G30", "X1", "X3 E83", "X3 F25", "X3 G01", "X5 E53", "X5 E70", "X5 F15", "X5 G05", "X6"],
-            "Mercedes-Benz": ["W124", "W202 (C-Class)", "W203", "W204", "W205", "W210 (E-Class)", "W211", "W212", "W213", "W220 (S-Class)", "W221", "W222", "ML / GLE W163", "ML / GLE W164", "ML / GLE W166", "Sprinter", "Vito / Viano"],
-            "Audi": ["A3", "A4 B5", "A4 B6", "A4 B7", "A4 B8", "A4 B9", "A6 C5", "A6 C6", "A6 C7", "A6 C8", "A8", "Q3", "Q5", "Q7", "Q8"],
-            "Hyundai": ["Tucson 1", "Tucson 2 / ix35", "Tucson 3", "Tucson 4", "Santa Fe 1", "Santa Fe 2", "Santa Fe 3", "Santa Fe 4", "Elantra", "Sonata", "Accent", "i30", "Getz", "Creta", "Kona"],
-            "KIA": ["Sportage 2", "Sportage 3", "Sportage 4", "Sportage 5", "Ceed 1", "Ceed 2", "Ceed 3", "Rio 2", "Rio 3", "Rio 4", "Optima", "K5", "Cerato", "Sorento", "Soul"],
-            "Nissan": ["Qashqai J10", "Qashqai J11", "X-Trail T30", "X-Trail T31", "X-Trail T32", "Juke", "Rogue", "Leaf", "Almera", "Micra", "Note", "Murano", "Navara", "Pathfinder"],
-            "Renault": ["Duster", "Logan", "Sandero", "Megane 2", "Megane 3", "Megane 4", "Scenic 2", "Scenic 3", "Fluence", "Clio", "Kaptur", "Kadjar", "Master", "Trafic"],
-            "Mitsubishi": ["Lancer 9", "Lancer 10", "Outlander XL", "Outlander 3", "Pajero 3", "Pajero 4", "Pajero Sport", "ASX", "Grandis", "Colt"],
-            "Mazda": ["Mazda 3 BK", "Mazda 3 BL", "Mazda 3 BM", "Mazda 6 GG", "Mazda 6 GH", "Mazda 6 GJ", "CX-5", "CX-7", "CX-9"],
-            "Honda": ["Civic 4D", "Civic 5D", "Accord 7", "Accord 8", "Accord 9", "Accord 10", "CR-V 3", "CR-V 4", "CR-V 5", "HR-V", "Pilot"],
-            "Subaru": ["Forester", "Outback", "Legacy", "Impreza", "XV"],
-            "Lexus": ["IS", "ES", "GS", "RX 300/330/350", "RX 200t/350 (2015+)", "GX 470", "GX 460", "LX 470", "LX 570"],
-            "Daewoo / ZAZ": ["Lanos / Sens", "Matiz", "NEXIA", "ZAZ Vida", "ZAZ Forza", "ZAZ Tavria / Slavuta"],
-            "Opel": ["Astra G", "Astra H", "Astra J", "Astra K", "Vectra B", "Vectra C", "Insignia", "Zafira A", "Zafira B", "Corsa", "Vivaro", "Mokka"],
-            "Peugeot": ["206", "207", "307", "308", "407", "508", "2008", "3008", "5008", "Partner", "Boxer"],
-            "Citroen": ["C3", "C4", "C5", "Berlingo", "Jumper", "C-Elysee"],
-            "Fiat": ["Doblo", "Ducato", "500", "Panda", "Punto", "Tipo"],
-            "Jeep": ["Grand Cherokee", "Cherokee", "Compass", "Renegade", "Wrangler"],
-            "Volvo": ["S40", "S60", "S80", "XC60", "XC90"]
+            {
+  "Acura": ["Integra", "MDX", "NSX", "RDX", "RSX", "TLX", "TSX", "ZDX"],
+  "Alfa Romeo": ["147", "156", "159", "4C", "8C Competizione", "Giulia", "Giulietta", "Stelvio", "Tonale"],
+  "Aston Martin": ["DB9", "DB11", "DB12", "DBS", "DBX", "Rapide", "Vantage", "Vanquish"],
+  "Audi": ["A1", "A3", "A4 B5", "A4 B6", "A4 B7", "A4 B8", "A4 B9", "A5", "A6 C5", "A6 C6", "A6 C7", "A6 C8", "A7", "A8", "Q3", "Q4 e-tron", "Q5", "Q7", "Q8", "Q8 e-tron", "R8", "TT"],
+  "BMW": ["1 Series (F20/F40)", "2 Series", "3 Series (E30/E36/E46/E90/F30/G20)", "4 Series", "5 Series (E39/E60/F10/G30/G60)", "6 Series", "7 Series (E38/E65/F01/G11/G70)", "8 Series", "X1", "X3", "X4", "X5 (E53/E70/F15/G05)", "X6", "X7", "Z4", "i4", "i7", "iX"],
+  "BYD": ["Atto 3", "Dolphin", "Han", "Qin Plus", "Seal", "Song Plus", "Tang", "Yuan Plus"],
+  "Cadillac": ["ATS", "CT4", "CT5", "CTS", "Escalade", "Lyriq", "SRX", "XT4", "XT5", "XT6"],
+  "Chevrolet": ["Aveo", "Camaro", "Captiva", "Corvette", "Cruze", "Equinox", "Impala", "Lacetti", "Malibu", "Niva", "Orlando", "Spark", "Suburban", "Tahoe", "Tracker", "Trax"],
+  "Chrysler": ["300C", "Grand Voyager", "Pacifica", "PT Cruiser", "Sebring", "Town & Country"],
+  "Citroën": ["Berlingo", "C3", "C3 Aircross", "C4", "C4 Picasso", "C5", "C5 Aircross", "C5 X", "Jumpy"],
+  "Dacia": ["Duster", "Jogger", "Lodgy", "Logan", "Sandero", "Spring"],
+  "Daewoo": ["Lanos", "Matiz", "NEXIA", "Nubira", "Sens", "Tacuma"],
+  "Dodge": ["Avenger", "Caliber", "Challenger", "Charger", "Dart", "Durango", "Grand Caravan", "Journey", "RAM 1500"],
+  "Fiat": ["500", "500X", "Doblò", "Ducato", "Grande Punto", "Panda", "Tipo"],
+  "Ford": ["C-Max", "Edge", "Escape", "Explorer", "Fiesta", "Focus Mk1", "Focus Mk2", "Focus Mk3", "Focus Mk4", "Fusion", "Kuga", "Mondeo", "Mustang", "Mustang Mach-E", "Ranger", "Transit"],
+  "Geely": ["Atlas", "Atlas Pro", "Coolray", "Emgrand", "Monjaro", "Tugella"],
+  "Genesis": ["G70", "G80", "G90", "GV60", "GV70", "GV80"],
+  "Honda": ["Accord", "Civic", "CR-V", "HR-V", "Insight", "Odyssey", "Pilot", "Prelude", "Ridgeline"],
+  "Hyundai": ["Elantra", "Getz", "Grandeur", "Ioniq 5", "Ioniq 6", "Kona", "Palisade", "Santa Fe", "Sonata", "Tucson", "Veloster"],
+  "Infiniti": ["EX35", "FX35/FX37/FX50", "G35/G37", "JX35", "Q50", "Q60", "QX50", "QX60", "QX70", "QX80"],
+  "Jaguar": ["E-Pace", "F-Pace", "F-Type", "I-Pace", "XE", "XF", "XJ"],
+  "Jeep": ["Cherokee", "Compass", "Grand Cherokee", "Gladiator", "Patriot", "Renegade", "Wrangler"],
+  "Kia": ["Ceed", "Cerato", "EV6", "EV9", "K5", "Optima", "Picanto", "Rio", "Sorento", "Soul", "Sportage", "Stinger", "Telluride"],
+  "Land Rover": ["Defender", "Discovery", "Discovery Sport", "Range Rover", "Range Rover Evoque", "Range Rover Sport", "Range Rover Velar"],
+  "Lexus": ["CT 200h", "ES", "GS", "GX", "IS", "LC", "LS", "LX", "NX", "RX", "UX"],
+  "Lincoln": ["Aviator", "Continental", "Corsair", "MKZ", "Nautilus", "Navigator"],
+  "Mazda": ["2", "3", "6", "CX-30", "CX-5", "CX-50", "CX-60", "CX-7", "CX-9", "CX-90", "MX-5 Miata", "RX-8"],
+  "Mercedes-Benz": ["A-Class", "B-Class", "C-Class (W203/W204/W205/W206)", "CLA", "CLE", "CLS", "E-Class (W211/W212/W213/W214)", "G-Class", "GLA", "GLB", "GLC", "GLE (W166/V167)", "GLS", "S-Class (W220/W221/W222/W223)", "SL", "Sprinter", "Vito"],
+  "Mini": ["Clubman", "Cooper", "Countryman", "Paceman"],
+  "Mitsubishi": ["ASX", "Eclipse Cross", "Galant", "L200", "Lancer IX", "Lancer X", "Outlander", "Pajero", "Pajero Sport"],
+  "Nissan": ["350Z", "370Z", "Altima", "Juke", "Leaf", "Maximize", "Murano", "Navara", "Note", "Pathfinder", "Patrol", "Qashqai", "Rogue", "Sentra", "Skyline", "Teana", "X-Trail"],
+  "Opel": ["Astra F", "Astra G", "Astra H", "Astra J", "Astra K", "Corsa", "Insignia", "Mokka", "Omega", "Vectra B", "Vectra C", "Zafira"],
+  "Peugeot": ["206", "207", "208", "301", "307", "308", "407", "508", "2008", "3008", "5008", "Partner", "Rifter"],
+  "Porsche": ["718 Boxster", "718 Cayman", "911 (996/997/991/992)", "Cayenne", "Macan", "Panamera", "Taycan"],
+  "Renault": ["Arkana", "Captur", "Clio", "Duster", "Fluence", "Kadjar", "Kangoo", "Koleos", "Laguna", "Logan", "Megane", "Scenic", "Symbol", "Trafic", "Zoe"],
+  "Škoda": ["Fabia", "Kamiq", "Karoq", "Kodiaq", "Octavia Tour", "Octavia A5", "Octavia A7", "Octavia A8", "Rapid", "Scalia", "Superb", "Yeti"],
+  "Subaru": ["BRZ", "Forester", "Impreza", "Legacy", "Outback", "WRX", "XV / Crosstrek"],
+  "Suzuki": ["Grand Vitara", "Jimny", "SX4", "Swift", "Vitara"],
+  "Tesla": ["Cybertruck", "Model 3", "Model S", "Model X", "Model Y", "Roadster"],
+  "Toyota": ["4Runner", "Avalon", "Avensis", "Camry (XV30/XV40/XV50/XV70/XV80)", "Corolla", "FJ Cruiser", "Highlander", "Hilux", "Land Cruiser 80", "Land Cruiser 100", "Land Cruiser 200", "Land Cruiser 300", "Land Cruiser Prado (120/150/250)", "Prius", "RAV4", "Sequoia", "Sienna", "Tundra", "Yaris"],
+  "Volkswagen": ["Amarok", "Arteon", "Caddy", "Golf 4", "Golf 5", "Golf 6", "Golf 7", "Golf 8", "ID.3", "ID.4", "Jetta", "Passat B5", "Passat B6", "Passat B7", "Passat B8", "Polo", "Scirocco", "Sharan", "Tiguan", "Touareg", "Transporter (T4/T5/T6)"],
+  "Volvo": ["C30", "S40", "S60", "S80", "S90", "V60", "V90", "XC40", "XC60", "XC90"]
+}
         };
 
         const colorsByShape = {
